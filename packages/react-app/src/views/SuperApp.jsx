@@ -72,9 +72,9 @@ export default function SuperApp({
           <>
             <div style={{ margin: 8 }}>
               <EtherInput
-                placeholder={"flow rate"}
+                placeholder={"flow rate $/day"}
                 onChange={value => {
-                  setFlowRate(value);
+                  setFlowRate((value * 1e18) / 24 / 3600);
                 }}
               />
               <EtherInput
@@ -108,7 +108,8 @@ export default function SuperApp({
               return (
                 <List.Item key={i}>
                   <>
-                    Sender: {item.sender} Receiver: {item.receiver} netFlow: {item.flowRate}
+                    Sender: {item.sender} Receiver: {item.receiver} netFlow:{" "}
+                    {((item.flowRate / 1e18) * 3600 * 24).toFixed(2)}$/day
                   </>
                 </List.Item>
               );
@@ -126,7 +127,8 @@ export default function SuperApp({
               return (
                 <List.Item key={i}>
                   <>
-                    Sender: {item.sender} Receiver: {item.receiver} netFlow: {item.flowRate}
+                    Sender: {item.sender} Receiver: {item.receiver} netFlow:
+                    {((item.flowRate / 1e18) * 3600 * 24).toFixed(2)} $/day
                   </>
                 </List.Item>
               );
@@ -139,7 +141,14 @@ export default function SuperApp({
         <Card>
           <h2>Your Flow Details: </h2>
           <ul>
-            <li>Netflow: {userDetails && userDetails.cfa && userDetails.cfa.netFlow}</li>
+            <li>
+              Netflow:{" "}
+              {userDetails &&
+                userDetails.cfa &&
+                userDetails.cfa.netFlow &&
+                ((userDetails.cfa.netFlow / 1e18) * 3600 * 24).toFixed(2)}
+              $/day
+            </li>
           </ul>
         </Card>
 
