@@ -18,7 +18,7 @@ const main = async () => {
   const deployerSigner = await ethers.provider.getSigner();
   const deployerAddr = await deployerSigner.getAddress();
   const yourContract = await deploy("TradeableCashflow", [
-    "0xAB214D6879fCF2f5588d7f2572480283730b9D97",
+    "0x453421d55f4E3ceA10A0B00DF4ea81120647e5D9", //new cow
     sf.host.address,
     sf.agreements.cfa.address,
     daix,

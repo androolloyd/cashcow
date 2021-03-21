@@ -64,9 +64,9 @@ export default function SuperApp({
       {/*
         ⚙️ Here is an example UI that displays and sets the purpose in your smart contract:
       */}
-      <Col order={3} style={{ border: "1px solid #cccccc", padding: 16, width: 400, margin: "auto", marginTop: 64 }}>
+      <Col order={3} style={{ border: "1px solid #cccccc", padding: 32, width: 400, margin: "auto", marginTop: 64 }}>
         {!superUser && <h2>Your not a super user yet, Connect wallet to get started</h2>}
-        {superUser && <p>Hello SuperUser, Use the form below to tokenize your cash flow</p>}
+        {superUser && <p>Hello Cashcow'er!!, Use the form below to tokenize your 🥛</p>}
         <Divider />
         {address && userProvider && (
           <>

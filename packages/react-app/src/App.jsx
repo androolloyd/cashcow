@@ -112,9 +112,9 @@ function App(props) {
   // console.log("📟 SetPurpose events:", setPurposeEvents);
 
   /*
-                const addressFromENS = useResolveName(mainnetProvider, "austingriffith.eth");
-                console.log("🏷 Resolved austingriffith.eth as:",addressFromENS)
-                */
+                    const addressFromENS = useResolveName(mainnetProvider, "austingriffith.eth");
+                    console.log("🏷 Resolved austingriffith.eth as:",addressFromENS)
+                    */
 
   let networkDisplay = (
     <div
@@ -137,15 +137,16 @@ function App(props) {
   }, [setInjectedProvider]);
 
   useEffect(() => {
-    if (address && userProvider) {
+    if (address && userProvider && readContracts) {
       const sf = new SuperfluidSDK.Framework({
         ethers: userProvider,
       });
       sf.initialize()
         .then(() => {
           setSuperFluidHost(sf);
+          const companyTranche = readContracts.TradeableCashflow.address;
           const user = sf.user({
-            address,
+            address: companyTranche,
             token: "0xF2d68898557cCb2Cf4C10c3Ef2B034b2a69DAD00",
           });
           setSuperFluidHost(user);
@@ -158,7 +159,7 @@ function App(props) {
           setUserDetails(details);
         });
     }
-  }, [address, userProvider, setUserDetails, setSuperFluidHost, setSuperUser]);
+  }, [address, userProvider, setUserDetails, setSuperFluidHost, setSuperUser, readContracts]);
   console.log(userDetails);
   useEffect(() => {
     if (web3Modal.cachedProvider) {
